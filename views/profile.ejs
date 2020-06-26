@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+        <body>
+            <div class= "banner">
+                <a href="/"><img src="https://www.flaticon.com/premium-icon/icons/svg/61/61972.svg" width="60px" height="60px"> </a>
+            </div>
+            
+            <img class="userPicture" src=<%=users.img%>> 
+            
+            <div class="userInfoBox">
+                
+                <h1>Welcome  <%=users.name%></h1>
+                
+                <div class="userInfo">
+                    <form action="/profile/<%=users.id%>?_method=PUT" method="POST">
+                        Name: <input type="text" name="name" value=<%=users.name%> /><br>
+                        Username: <input type="text" name="username" value=<%=users.username%> /> <br>
+                        Password: <input type="password" name="password"value = <%=users.password%> disabled /><br>
+                        Email: <input type="email" name="email" value= <%=users.email%> /><br>
+                        Profile Picture:  <input type="text" placeholder = "Picture URL(under 250 char.)" name="img" /><br>
+                        <input class = "button" type="submit" value="Edit Profile" /> <br>
+                    </form>
+                    
+                    <form action="/profile/<%=users.id%>?_method=DELETE" method="POST">
+                        <input class = "button" type="submit" value="Delete Profile" />
+                    </form> 
+                
+                </div>
+            
+            </div>
+            
+            <div class = "currentPlaylist">
+                <h2>Your Current Playlists:</h2>
+                <% for(let i=0; i<users.Playlists.length; i++) { %>
+                    <a href="/playlists/<%=users.id%>/<%=users.Playlists[i].id%>"> <%=users.Playlists[i].playlist_name%> </a><br>
+                    <form action="/playlists/<%=users.id%>/<%=users.Playlists[i].id%>?_method=DELETE" method="POST">
+                        <input class = "buttonPlaylist" type="submit" value="Delete"/>
+                    </form>
+                    
+                    <% } %>
+                
+                </div>
+                
+                <div class="createPlaylist">
+                    <h3> Create a Playlist: </h2>
+                        <form action="/profile/<%=users.id%>" method="POST">     
+                            <input type="text" name= "playlist_name" />
+                            <input class = "button" type="submit" value="Create Playlist" />
+                        </form>
+                    
+                    </div>
+                
+                </body>
+
+</html>

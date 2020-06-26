@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Sign</title>
+</head>
+    <body>
+        
+        <div class= "banner">
+            <a href="/"><img src="https://www.flaticon.com/premium-icon/icons/svg/61/61972.svg" width="60px" height="60px"> </a>
+        </div>
+
+        <div class="title">Spinz Music App</div>
+        
+        <div class="userinput">
+
+            <h1> Existing user? You're in the right place</h1>
+            
+            <form action='/auth/login' method="POST">
+                <input class="singleinput" type="text" placeholder="Username" name="username" /> <br>
+                <input class="singleinput" type="password" placeholder="Password" name="password"/> <br>
+                <input class="singleinput"type="submit" value="login"/>
+                <h2><%=msg%></h2>
+                <a href="/auth/signup">New to the site?</a>
+            </form>
+        
+        </div>
+    
+    </body>
+
+</html>

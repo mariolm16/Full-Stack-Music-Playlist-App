@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Playlist</title>
+</head>
+    <body>
+        <div class= "banner">
+            <a href="/"><img src="https://www.flaticon.com/premium-icon/icons/svg/61/61972.svg" width="60px" height="60px"> </a>   
+        </div>
+        
+        <img class="playPicture" src=<%=playlists.User.img%>> 
+        
+        <div class="today">
+            <h1> Today's featured Playlist:  <%=playlists.playlist_name%> <br>
+                Brought to you by <%=playlists.User.name%>! 
+            </h1>
+        </div>
+        
+        <div class="action">
+            <ul>
+                <% for(let i=0; i<playlists.Songs.length; i++) { %>
+                    <li class="indivSong">
+                        Song: <%=playlists.Songs[i].name%> <br>
+                        Artist: <%=playlists.Songs[i].artist%> 
+                        Album: <%=playlists.Songs[i].album%> <br>
+                        Youtube: <a href="<%=playlists.Songs[i].video%>" target="_blank">Here!</a> <br>
+                    </li>
+                    
+                    <form action="/playlists/<%=userId%>/<%=playlists.id%>/<%=playlists.Songs[i].id%>?_method=DELETE" method="POST">
+                        <input class="button" type="submit" value="Delete Song"/>
+                    </form>
+                    <% } %>
+                    
+                    <form action="/playlists/<%=userId%>/<%=playlists.id%>?_method=DELETE" method="POST">
+                        <input type="submit" value="Delete Playlist" />
+                    </form>
+                
+                </ul>
+            
+            </div>
+            
+            <div class="addSongBox">   
+                <form action="/playlists/<%=userId%>/<%=playlists.id%>" method="POST">
+                    Song: <input type="text" name="name" />
+                    Artist: <input type="text" name="artist" /> 
+                    Album: <input type="text" name="album" />
+                    Video: <input type="text" name="video" />
+                    <br> <input class = "button" type="submit" value="Create Song" />
+                </form>
+            
+            </div> 
+            
+            <div class="allSongs">
+                <ul>
+                    <% for(let i=0; i<songs.length; i++) { %>
+                        <li class="indivSong">
+                            Song: <%=songs[i].name%> <br>
+                            Artist: <%=songs[i].artist%> 
+                            Album: <%=songs[i].album%> <br>
+                            
+                            <form action="/playlists/<%=userId%>/<%=playlists.id%>/<%=songs[i].id%>?_method=PUT" method="POST">
+                                <input class = "button" type="submit" value="Add Song" />
+                            </form> 
+                        
+                        </li>
+                        
+                        <% } %>
+                    
+                    </ul>
+                
+                </div>
+            
+            </body>
+</html>
